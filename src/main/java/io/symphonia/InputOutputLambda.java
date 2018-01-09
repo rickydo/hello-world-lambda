@@ -7,10 +7,31 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 public class InputOutputLambda {
-    public Map<String, Map<String, Integer>> handler (List<Map<String, Integer>> input) {
-        Map<String, Map<String, Integer>> newMap = new HashMap<>();
-        IntStream.range(0, input.size())
-                .forEach(i -> newMap.put("Nested at position " + i, input.get(i)));
-        return newMap;
+    public PojoResponse handler(PojoInput input) {
+        return new PojoResponse("Input was " + input.getA());
+    }
+
+    public static class PojoInput {
+        private String a;
+
+        public String getA() {
+            return a;
+        }
+
+        public void setA(String a) {
+            this.a = a;
+        }
+    }
+
+    public static class PojoResponse {
+        private final String b;
+
+        PojoResponse(String b) {
+            this.b = b;
+        }
+
+        public String getB() {
+            return b;
+        }
     }
 }
